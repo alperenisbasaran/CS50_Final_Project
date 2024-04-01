@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="find.css" rel="stylesheet">
+    <title>Your Scholarship Hub | Find Scholarships</title>
+    <style>
+        /* Add custom styles if needed */
+        .table-container {
+            overflow-x: auto; /* Add a horizontal scrollbar if the table exceeds the width */
+        }
+
+        th.sortable {
+            cursor: pointer;
+        }
+
+        th.sortable::after {
+            content: ' ↑↓';
+            visibility: hidden;
+        }
+
+        th.sorted-asc::after {
+            content: ' ↑';
+            visibility: visible;
+        }
+
+        th.sorted-desc::after {
+            content: ' ↓';
+            visibility: visible;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="index.html"><b>Your Scholarship Hub</b></a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="find.html">Find Your Scholarship <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="frq.html">FAQ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+        <section id="find-scholarship">
+            <div class="container-fluid mt-4">
+                <h2>Find Your Scholarship</h2>
+                <p>Discover potential scholarships tailored for you by selecting your major, entering your GPA, and providing your SAT score. Our platform will match you with curated scholarships, each with its own requirements and financial support. Take the first step towards your academic journey and explore the possibilities of funding your education!</p>
+            <!-- Sample survey form -->
+            <form id="scholarshipForm">
+                <div class="form-group">
+                <label for="major">Select your major:</label>
+                <select id="major" name="major" class="form-control">
+                <option value="not-sure">Not sure</option>
+                <option value="engineering">Engineering</option>
+                <option value="business">Business</option>
+                <option value="science">Science</option>
+                <option value="math">Mathematics</option>
+                <option value="history">History</option>
+                <option value="english">English</option>
+                <option value="psychology">Psychology</option>
+                <option value="biology">Biology</option>
+                <option value="chemistry">Chemistry</option>
+                <option value="physics">Physics</option>
+                <option value="computer-science">Computer Science</option>
+                <option value="music">Music</option>
+                <option value="art">Art</option>
+                <option value="communications">Communications</option>
+                <option value="business-administration">Business Administration</option>
+                <option value="environmental-science">Environmental Science</option>
+                <option value="political-science">Political Science</option>
+                <option value="nursing">Nursing</option>
+                <option value="architecture">Architecture</option>
+                <option value="finance">Finance</option>
+                <option value="marketing">Marketing</option>
+                <option value="geology">Geology</option>
+                <option value="sociology">Sociology</option>
+                <option value="linguistics">Linguistics</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="gpa">Enter your GPA:</label>
+            <input type="number" id="gpa" name="gpa" step="0.01" min="0" max="4" required class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="satScore">Enter your SAT score:</label>
+            <input type="number" id="satScore" name="satScore" min="400" max="1600" required class="form-control">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Find Scholarships</button>
+        <button type="button" onclick="listAllScholarships()" class="btn btn-secondary">List All</button>
+        <button type="button" onclick="clearFormAndTable()" class="btn btn-light">Clear</button>
+    </form>
+</section>
+
+<div id="resultContainer" class="table-container mt-4"></div>
+</div>
+    <script>
+
+        // Event listener for form submission
+        document.getElementById('scholarshipForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            filterAndDisplayScholarships();
+        });
+
+        function listAllScholarships() {
+            displayScholarships(randomScholarships);
+        }
+
+        function clearFormAndTable() {
+            document.getElementById('scholarshipForm').reset();
+            document.getElementById('resultContainer').innerHTML = '';
+        }
+        // Sample data for scholarships and their requirements, more can be added
+        const randomScholarships = [
+            { name: "Innovator's Excellence Scholarship", majorReq: "engineering", type: "Success", gpaReq: 3.7, satReq: 1350, upTo: 8000 },
+            { name: "Business Mogul Grant", majorReq: "business", type: "Financial", gpaReq: 3.5, satReq: 1300, upTo: 10000 },
+            { name: "Science Visionary Award", majorReq: "science", type: "Success", gpaReq: 3.8, satReq: 1400, upTo: 9000 },
+            { name: "Mathematical Genius Scholarship", majorReq: "math", type: "Financial", gpaReq: 4.0, satReq: 1600, upTo: 30000 },
+            { name: "Historical Preservation Grant", majorReq: "history", type: "Success", gpaReq: 3.5, satReq: 1300, upTo: 8000 },
+            { name: "Literary Arts Achievement Scholarship", majorReq: "english", type: "Financial", gpaReq: 3.6, satReq: 1350, upTo: 11000 },
+            { name: "Mind and Behavior Excellence Grant", majorReq: "psychology", type: "Success", gpaReq: 3.7, satReq: 1380, upTo: 9500 },
+            { name: "Biological Advancement Scholarship", majorReq: "biology", type: "Financial", gpaReq: 3.8, satReq: 1420, upTo: 12000 },
+            { name: "Chemical Innovator Grant", majorReq: "chemistry", type: "Success", gpaReq: 3.7, satReq: 1360, upTo: 8800 },
+            { name: "Physics Pioneer Scholarship", majorReq: "physics", type: "Financial", gpaReq: 3.6, satReq: 1540, upTo: 11000 },
+            { name: "Tech Guru Grant", majorReq: "computer-science", type: "Success", gpaReq: 3.8, satReq: 1400, upTo: 10000 },
+            { name: "Musical Harmony Scholarship", majorReq: "music", type: "Financial", gpaReq: 3.5, satReq: 1300, upTo: 9000 },
+            { name: "Visual Arts Creativity Award", majorReq: "art", type: "Success", gpaReq: 3.6, satReq: 1520, upTo: 8000 },
+            { name: "Communications Maestro Scholarship", majorReq: "communications", type: "Financial", gpaReq: 3.7, satReq: 1380, upTo: 9500 },
+            { name: "Business Administration Leadership Grant", majorReq: "business-administration", type: "Success", gpaReq: 3.7, satReq: 1370, upTo: 8500 },
+            { name: "Environmental Science Eco-Scholarship", majorReq: "environmental-science", type: "Financial", gpaReq: 3.8, satReq: 1420, upTo: 11500 },
+            { name: "Political Science Diplomacy Award", majorReq: "political-science", type: "Success", gpaReq: 3.6, satReq: 1340, upTo: 8800 },
+            { name: "Nursing Care Excellence Scholarship", majorReq: "nursing", type: "Financial", gpaReq: 3.7, satReq: 1360, upTo: 10500 },
+            { name: "Architectural Visionary Grant", majorReq: "architecture", type: "Success", gpaReq: 3.8, satReq: 1400, upTo: 9000 },
+            { name: "Finance Wizard Scholarship", majorReq: "finance", type: "Financial", gpaReq: 3.5, satReq: 1300, upTo: 10000 },
+            { name: "Marketing Maven Scholarship", majorReq: "marketing", type: "Success", gpaReq: 3.6, satReq: 1320, upTo: 8000 },
+            { name: "Geological Exploration Grant", majorReq: "geology", type: "Financial", gpaReq: 3.0, satReq: 1580, upTo: 9500 },
+            { name: "Societal Impact Scholarship", majorReq: "sociology", type: "Success", gpaReq: 3.8, satReq: 1420, upTo: 9200 },
+            { name: "Linguistic Diversity Scholarship", majorReq: "linguistics", type: "Financial", gpaReq: 3.6, satReq: 1340, upTo: 11000 },
+            { name: "Financial Analytics Excellence Grant", majorReq: "finance", type: "Success", gpaReq: 3.7, satReq: 1360, upTo: 8700 },
+            { name: "Marketing Strategy Scholarship", majorReq: "marketing", type: "Financial", gpaReq: 3.8, satReq: 1400, upTo: 9200 },
+            { name: "Geological Research Award", majorReq: "geology", type: "Success", gpaReq: 3.6, satReq: 1540, upTo: 8000 },
+            { name: "Societal Development Grant", majorReq: "sociology", type: "Financial", gpaReq: 3.7, satReq: 1380, upTo: 10000 },
+            { name: "Language Studies Scholarship", majorReq: "linguistics", type: "Success", gpaReq: 3.8, satReq: 1420, upTo: 9000 },
+            { name: "Financial Planning Excellence Scholarship", majorReq: "finance", type: "Financial", gpaReq: 3.6, satReq: 1340, upTo: 11500 },
+            { name: "Entrepeneur's Excellence Scholarship", majorReq: "engineering", type: "Success", gpaReq: 3.4, satReq: 1350, upTo: 18000 },
+        ];
+
+        document.getElementById('scholarshipForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            filterAndDisplayScholarships();
+        });
+
+        function listAllScholarships() {
+            displayScholarships(randomScholarships);
+        }
+
+        function clearFormAndTable() {
+            document.getElementById('scholarshipForm').reset();
+            document.getElementById('resultContainer').innerHTML = '';
+        }
+
+        // Additional variables to track sorting
+        let sortColumn = null;
+        let sortOrder = 'asc';
+
+        // Event listener for form submission
+        document.getElementById('scholarshipForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            filterAndDisplayScholarships();
+        });
+
+        function listAllScholarships() {
+            displayScholarships(randomScholarships);
+        }
+
+        function clearFormAndTable() {
+            document.getElementById('scholarshipForm').reset();
+            document.getElementById('resultContainer').innerHTML = '';
+        }
+
+        function filterAndDisplayScholarships() {
+            // Get user input values
+            const userMajor = document.getElementById('major').value;
+            const userGPA = parseFloat(document.getElementById('gpa').value);
+            const userSATScore = parseInt(document.getElementById('satScore').value);
+
+            // Filter scholarships based on user input
+            const eligibleScholarships = randomScholarships.filter(scholarship => {
+                return (userMajor === 'not-sure' || !scholarship.majorReq || scholarship.majorReq === userMajor) &&
+                    (!scholarship.gpaReq || userGPA >= scholarship.gpaReq) &&
+                    (!scholarship.satReq || userSATScore >= scholarship.satReq);
+            });
+
+            // Display eligible scholarships in a table
+            displayScholarships(eligibleScholarships);
+        }
+
+        function displayScholarships(scholarships) {
+            const resultContainer = document.getElementById('resultContainer');
+
+            // Clear previous results
+            resultContainer.innerHTML = '';
+
+            // Display a message if no scholarships match the criteria
+            if (scholarships.length === 0) {
+                resultContainer.innerHTML = '<p>No scholarships matches with your criteria.</p>';
+                return;
+            }
+
+            // Create a table
+            const table = document.createElement('table');
+            table.classList.add('table', 'table-bordered', 'table-responsive');
+
+            // Create table header
+            const headerRow = table.createTHead().insertRow(0);
+            const headers = ['Scholarship Name', 'Major Requirement', 'Minimum GPA Requirement', 'Minimum SAT Requirement', 'Type', 'Up To'];
+
+            headers.forEach((headerText, index) => {
+                const th = document.createElement('th');
+                th.textContent = headerText;
+
+                // Add sorting functionality to table header
+                th.addEventListener('click', () => sortTable(index));
+
+                headerRow.appendChild(th);
+            });
+
+            // Create table rows with scholarship information
+            const tbody = table.createTBody();
+            scholarships.forEach(scholarship => {
+                const row = tbody.insertRow();
+                const rowData = [
+                    scholarship.name,
+                    scholarship.majorReq || 'Not specified',
+                    scholarship.gpaReq || 'Not specified',
+                    scholarship.satReq || 'Not specified',
+                    scholarship.type,
+                    `$${scholarship.upTo.toLocaleString()}`
+                ];
+
+                rowData.forEach(data => {
+                    const cell = row.insertCell();
+                    cell.textContent = data;
+                });
+            });
+
+            // Append the table to the result container
+            resultContainer.appendChild(table);
+        }
+
+        function sortTable(columnIndex) {
+            const table = document.querySelector('table');
+            const tbody = table.tBodies[0];
+            const rows = Array.from(tbody.rows);
+
+            // Determine the type of data in the column
+            const dataType = columnIndex === 0 ? 'string' : 'number';
+
+            // Sort the rows based on the data in the selected column
+            rows.sort((a, b) => {
+                const aValue = getDataValue(a.cells[columnIndex].textContent, dataType);
+                const bValue = getDataValue(b.cells[columnIndex].textContent, dataType);
+
+                if (sortOrder === 'asc') {
+                    return aValue - bValue;
+                } else {
+                    return bValue - aValue;
+                }
+            });
+
+            // Clear existing rows from the table
+            tbody.innerHTML = '';
+
+            // Append the sorted rows to the table
+            rows.forEach(row => tbody.appendChild(row));
+
+            // Toggle the sort order for the next click
+            sortOrder = sortOrder === 'asc' ? 'desc' : 'asc';
+        }
+
+        function getDataValue(value, dataType) {
+            if (dataType === 'string') {
+                return value.toLowerCase();
+            } else {
+                return parseFloat(value.replace(/[^0-9.-]/g, ''));
+            }
+        }
+    </script>
+</body>
+
+</html>
