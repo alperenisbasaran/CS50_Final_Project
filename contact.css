@@ -1,0 +1,52 @@
+.contact-container {
+    text-align: center;
+}
+
+body {
+            font-family: 'Arial', sans-serif;
+            background-color:#e3c5b1;
+        }
+
+        .navbar {
+            background-color: #343a40;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #c2a795;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+form {
+    max-width: 500px;
+    margin: 20px auto;
+
+}
+
+form input,
+form textarea {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+form button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
