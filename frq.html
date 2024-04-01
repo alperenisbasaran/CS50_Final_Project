@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQs | Your Scholarship Hub</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="frq.css" rel="stylesheet">
+
+</head>
+<body>
+
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="index.html"><b>Your Scholarship Hub</b></a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="find.html">Find Your Scholarship <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="frq.html">FAQ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container-fluid mt-4">
+        <h2>Frequently Asked Questions</h2>
+        <p>Welcome to the FAQ section of "Your Scholarship Hub," your go-to resource for demystifying the scholarship application process. We understand that embarking on a scholarship journey can raise numerous questions, and we're here to provide clarity. In this section, we address common inquiries to ensure you're well-informed and equipped to navigate the world of scholarships with confidence. From understanding eligibility criteria to optimizing your application strategy, our FAQs cover a range of topics to streamline your experience. Explore the answers below and empower yourself as you pursue educational opportunities tailored to your unique profile. If you have additional questions, feel free to reach out—we're here to support your scholarship success!
+        </p>
+
+    <div class="faq-container">
+        <div class="faq-question" onclick="toggleAnswer('faq1')">How do I start the scholarship search process?</div>
+        <div class="faq-answer" id="faq1">To begin your scholarship search, visit the "Find Your Scholarship" page on our website. Complete the survey by selecting your major, entering your GPA, and providing your SAT score. Our platform will then match you with a curated list of scholarships tailored to your profile.</div>
+
+        <div class="faq-question" onclick="toggleAnswer('faq2')">What are the key criteria for scholarship eligibility?</div>
+        <div class="faq-answer" id="faq2">The key criteria for scholarship eligibility include your major, GPA, and SAT score. Each scholarship may have specific requirements, so it's important to review the details of each scholarship to determine if you meet the criteria.</div>
+
+        <div class="faq-question" onclick="toggleAnswer('faq3')">Can I apply for multiple scholarships simultaneously?</div>
+        <div class="faq-answer" id="faq3">Yes, you can apply for multiple scholarships simultaneously. However, be sure to carefully review the application deadlines and requirements for each scholarship to ensure you submit all necessary materials on time.</div>
+
+        <div class="faq-question" onclick="toggleAnswer('faq4')">How will I be notified if I receive a scholarship?</div>
+        <div class="faq-answer" id="faq4">If you are selected for a scholarship, you will typically be notified via email or through the scholarship provider's online portal. It's important to regularly check your email and account notifications for updates on your scholarship applications.</div>
+
+        <div class="faq-question" onclick="toggleAnswer('faq5')">What should I include in my scholarship application essay?</div>
+        <div class="faq-answer" id="faq5">When writing a scholarship application essay, focus on highlighting your achievements, goals, and the impact of receiving the scholarship on your education. Be sure to follow any specific essay prompts provided by the scholarship provider.</div>
+
+        <div class="faq-question" onclick="toggleAnswer('faq6')">Are there scholarships for students with a low GPA?</div>
+        <div class="faq-answer" id="faq6">Yes, there are scholarships available for students with a low GPA. Some scholarships prioritize other factors such as financial need, community involvement, or specific talents. Explore a variety of scholarships to find those that match your unique qualities and circumstances.</div>
+
+        <div class="faq-question" onclick="toggleAnswer('faq7')">How can I increase my chances of winning a scholarship?</div>
+        <div class="faq-answer" id="faq7">To increase your chances of winning a scholarship, focus on maintaining a strong academic record, actively participating in extracurricular activities, and demonstrating leadership skills. Tailor your scholarship applications to showcase your achievements and align with the specific criteria of each scholarship.</div>
+
+        <div class="faq-question" onclick="toggleAnswer('faq8')">Is there an application fee for the scholarships?</div>
+        <div class="faq-answer" id="faq8">Scholarship application fees vary by provider. While some scholarships may have a fee, many are free to apply. Always review the specific details of each scholarship to understand any associated costs.</div>
+
+        <div class="faq-question" onclick="toggleAnswer('faq9')">Can international students apply for these scholarships?</div>
+        <div class="faq-answer" id="faq9">Yes, some scholarships are open to international students. However, eligibility criteria may vary, and certain scholarships may be limited to specific regions. Check the requirements of each scholarship to determine if international students are eligible.</div>
+
+        <div class="faq-question" onclick="toggleAnswer('faq10')">What documents are usually required for a scholarship application?</div>
+        <div class="faq-answer" id="faq10">Typically, scholarship applications require transcripts, letters of recommendation, a personal statement, and information about extracurricular activities. It's essential to carefully read the application instructions for each scholarship to ensure you provide all necessary documents.</div>
+
+        <div class="faq-question" onclick="toggleAnswer('faq11')">Are there scholarships available for graduate students?</div>
+        <div class="faq-answer" id="faq11">Yes, there are scholarships specifically designed for graduate students. These may be offered by universities, private organizations, or government entities. Explore scholarship databases and contact your academic institution for information on graduate-level scholarship opportunities.</div>
+
+        <div class="faq-question" onclick="toggleAnswer('faq12')">How can I update or edit my scholarship application after submission?</div>
+        <div class="faq-answer" id="faq12">Once you submit a scholarship application, it's generally not possible to edit it. Ensure that all information is accurate and complete before submission. If you need to make changes or have concerns, contact the scholarship provider directly for guidance.</div>
+
+<!-- More FAQs can be added -->
+    </div>
+
+    <script>
+        function toggleAnswer(faqId) {
+            const answer = document.getElementById(faqId);
+            answer.style.display = (answer.style.display === 'block') ? 'none' : 'block';
+        }
+    </script>
+
+</body>
+</html>
